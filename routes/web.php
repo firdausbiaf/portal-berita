@@ -1,7 +1,46 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Public\ArticleController as PublicArticleController;
+use App\Http\Controllers\Public\CategoryController as PublicCategoryController;
+use App\Http\Controllers\Public\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/kategori/{category:slug}', [PublicCategoryController::class, 'show'])->name('categories.show');
+Route::get('/berita/{article:slug}', [PublicArticleController::class, 'show'])->name('articles.show');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Authentication Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AuthController::class, 'create'])->name('login');
+    Route::post('/login', [AuthController::class, 'store'])->name('login.store');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+        // Categories CRUD
+        Route::resource('categories', CategoryController::class)->except(['show']);
+
+        // Tags CRUD
+        Route::resource('tags', TagController::class)->except(['show']);
+
+        // Articles CRUD & Publishing actions
+        Route::post('articles/{article}/publish', [ArticleController::class, 'publish'])->name('articles.publish');
+        Route::post('articles/{article}/unpublish', [ArticleController::class, 'unpublish'])->name('articles.unpublish');
+        Route::resource('articles', ArticleController::class)->except(['show']);
+    });
 });
