@@ -43,7 +43,8 @@
                         <tr>
                             <th scope="col" class="py-3 px-6">Nama Kategori</th>
                             <th scope="col" class="py-3 px-6">Slug</th>
-                            <th scope="col" class="py-3 px-6">Deskripsi</th>
+                            <th scope="col" class="py-3 px-6 text-center">Menu Utama</th>
+                            <th scope="col" class="py-3 px-6 text-center">Urutan</th>
                             <th scope="col" class="py-3 px-6">Jumlah Berita</th>
                             <th scope="col" class="py-3 px-6 text-right">Aksi</th>
                         </tr>
@@ -57,8 +58,19 @@
                                 <td class="py-4 px-6 font-mono text-xs text-stone-500">
                                     {{ $category->slug }}
                                 </td>
-                                <td class="py-4 px-6 text-xs text-stone-500 max-w-xs truncate">
-                                    {{ $category->description ?? '-' }}
+                                <td class="py-4 px-6 text-center">
+                                    @if($category->show_in_header)
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                            Ya
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-stone-100 text-stone-500 border border-stone-200">
+                                            Tidak
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="py-4 px-6 text-center text-xs font-mono text-stone-600">
+                                    {{ $category->menu_order ?? '-' }}
                                 </td>
                                 <td class="py-4 px-6 text-xs">
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $category->articles_count > 0 ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-stone-100 text-stone-600' }}">

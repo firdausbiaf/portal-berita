@@ -29,6 +29,8 @@ class UpdateCategoryRequest extends FormRequest
             'name' => ['required', 'string', 'max:100'],
             'slug' => ['nullable', 'string', 'max:120', Rule::unique('categories', 'slug')->ignore($category)],
             'description' => ['nullable', 'string', 'max:500'],
+            'show_in_header' => ['nullable', 'boolean'],
+            'menu_order' => ['nullable', 'integer', 'min:1'],
         ];
     }
 }

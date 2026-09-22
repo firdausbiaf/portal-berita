@@ -54,6 +54,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => $slug,
             'description' => $request->description,
+            'show_in_header' => $request->boolean('show_in_header'),
+            'menu_order' => $request->filled('menu_order') ? (int) $request->menu_order : null,
         ]);
 
         return redirect()->route('admin.categories.index')
@@ -89,6 +91,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => $slug,
             'description' => $request->description,
+            'show_in_header' => $request->boolean('show_in_header'),
+            'menu_order' => $request->filled('menu_order') ? (int) $request->menu_order : null,
         ]);
 
         return redirect()->route('admin.categories.index')

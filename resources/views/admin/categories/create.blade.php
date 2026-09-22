@@ -80,6 +80,50 @@
                 @enderror
             </div>
 
+            <!-- Header Navigation Options -->
+            <div class="p-4 bg-stone-50 rounded-xl border border-stone-200/80 space-y-4">
+                <div class="flex items-start gap-3">
+                    <div class="flex items-center h-5">
+                        <input
+                            type="checkbox"
+                            id="show_in_header"
+                            name="show_in_header"
+                            value="1"
+                            {{ old('show_in_header', true) ? 'checked' : '' }}
+                            class="w-4 h-4 rounded text-red-600 border-stone-300 focus:ring-red-500 focus:ring-2 cursor-pointer"
+                        />
+                    </div>
+                    <div class="text-xs">
+                        <label for="show_in_header" class="font-semibold text-stone-800 cursor-pointer">
+                            Tampilkan di Menu Utama (Header)
+                        </label>
+                        <p class="text-stone-500 mt-0.5">Jika dicentang, kategori akan tampil di navigasi atas portal berita. Jika tidak, akan masuk ke dropdown "Lainnya".</p>
+                        @error('show_in_header')
+                            <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div>
+                    <label for="menu_order" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1.5">
+                        Urutan Menu
+                    </label>
+                    <input
+                        type="number"
+                        id="menu_order"
+                        name="menu_order"
+                        value="{{ old('menu_order') }}"
+                        min="1"
+                        placeholder="Contoh: 1, 2, 3... (opsional)"
+                        class="w-full sm:w-48 px-3.5 py-2 rounded-lg border @error('menu_order') border-red-500 @else border-stone-300 @enderror text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors bg-white"
+                    />
+                    <p class="text-[11px] text-stone-400 mt-1">Urutan posisi di header (angka lebih kecil tampil lebih awal/kiri).</p>
+                    @error('menu_order')
+                        <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
             <!-- Buttons -->
             <div class="pt-3 border-t border-stone-100 flex items-center justify-end gap-3">
                 <a href="{{ route('admin.categories.index') }}" class="px-4 py-2.5 text-xs font-semibold rounded-lg text-stone-600 hover:text-stone-800 transition-colors">
