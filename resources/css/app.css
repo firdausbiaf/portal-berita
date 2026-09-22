@@ -7,3 +7,116 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Article Body Typography */
+.article-body {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: #292524;
+}
+
+@media (min-width: 640px) {
+    .article-body {
+        font-size: 1.125rem;
+        line-height: 1.85;
+    }
+}
+
+.article-body p {
+    margin-bottom: 1.5rem;
+}
+
+.article-body h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #0c0a09;
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #dc2626;
+    padding-left: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .article-body h2 {
+        font-size: 1.625rem;
+    }
+}
+
+.article-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1c1917;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .article-body h3 {
+        font-size: 1.35rem;
+    }
+}
+
+.article-body ul {
+    list-style-type: disc;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.article-body ol {
+    list-style-type: decimal;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.article-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+}
+
+.article-body blockquote {
+    border-left: 4px solid #e7e5e4;
+    padding: 0.875rem 1.25rem;
+    margin: 1.75rem 0;
+    font-style: italic;
+    color: #57534e;
+    background-color: #fafaf9;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.article-body a {
+    color: #dc2626;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+    transition: color 0.15s ease-in-out;
+}
+
+.article-body a:hover {
+    color: #991b1b;
+}
+
+.article-body a:focus-visible {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}
+
+.article-body strong,
+.article-body b {
+    font-weight: 700;
+    color: #0c0a09;
+}
+
+.article-body em,
+.article-body i {
+    font-style: italic;
+}
+
+.article-body u {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+

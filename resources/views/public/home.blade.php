@@ -1,6 +1,8 @@
 @extends('layouts.public')
 
-@section('title', config('app.name', 'Portal Berita') . ' - Jurnalisme Cerdas, Kritis & Terpercaya')
+@section('title', config('site.name', 'Portal Berita') . ' - Jurnalisme Cerdas, Kritis & Terpercaya')
+@section('meta_description', config('site.description'))
+@section('canonical_url', route('home'))
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-12">
@@ -48,7 +50,7 @@
                             <div class="flex items-center gap-2 text-xs text-stone-500 mb-2.5">
                                 <span>{{ $headline->author?->name ?? 'Redaksi' }}</span>
                                 <span>&bull;</span>
-                                <time datetime="{{ $headline->published_at?->toIso8601String() }}">{{ $headline->published_at?->translatedFormat('d F Y, H:i') }} WIB</time>
+                                <time datetime="{{ $headline->published_at?->toIso8601String() }}">{{ $headline->publishedAtDisplay('d F Y, H:i') }}</time>
                             </div>
 
                             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-stone-950 group-hover:text-red-600 transition-colors leading-tight">
@@ -99,7 +101,8 @@
                                             @endif
                                         </div>
                                         <div class="mt-3 pt-3 border-t border-stone-100 text-[11px] text-stone-400 flex items-center justify-between">
-                                            <span>{{ $secArticle->published_at?->diffForHumans() }}</span>
+                                            <span>{{ $secArticle->author?->name ?? 'Redaksi' }}</span>
+                                            <time datetime="{{ $secArticle->published_at?->toIso8601String() }}">{{ $secArticle->publishedAtDisplay('d M Y, H:i') }}</time>
                                         </div>
                                     </a>
                             </article>
@@ -135,7 +138,7 @@
                                             </a>
                                         </h3>
                                         <div class="mt-1.5 flex items-center gap-2 text-[11px] text-stone-400">
-                                            <time datetime="{{ $popArticle->published_at?->toIso8601String() }}">{{ $popArticle->published_at?->translatedFormat('d M Y') }}</time>
+                                            <time datetime="{{ $popArticle->published_at?->toIso8601String() }}">{{ $popArticle->publishedAtDisplay('d M Y', false) }}</time>
                                             <span>&bull;</span>
                                             <span>{{ number_format($popArticle->view_count) }} dibaca</span>
                                         </div>
@@ -218,7 +221,7 @@
                                 <div class="mt-3 flex items-center gap-2 text-xs text-stone-400">
                                     <span>{{ $latestArticle->author?->name ?? 'Redaksi' }}</span>
                                     <span>&bull;</span>
-                                    <time datetime="{{ $latestArticle->published_at?->toIso8601String() }}">{{ $latestArticle->published_at?->diffForHumans() }}</time>
+                                    <time datetime="{{ $latestArticle->published_at?->toIso8601String() }}">{{ $latestArticle->publishedAtDisplay('d M Y, H:i') }}</time>
                                 </div>
                             </div>
                         </article>
@@ -261,7 +264,7 @@
                                         </a>
                                     </h3>
                                     <time class="mt-1.5 block text-[11px] text-stone-400" datetime="{{ $trendArticle->published_at?->toIso8601String() }}">
-                                        {{ $trendArticle->published_at?->translatedFormat('d M Y, H:i') }} WIB
+                                        {{ $trendArticle->publishedAtDisplay('d M Y, H:i') }}
                                     </time>
                                 </article>
                             @endforeach
@@ -313,7 +316,7 @@
                                                     {{ $catArticle->title }}
                                                 </h3>
                                                 <div class="mt-3 text-[11px] text-stone-400">
-                                                    <time datetime="{{ $catArticle->published_at?->toIso8601String() }}">{{ $catArticle->published_at?->translatedFormat('d M Y') }}</time>
+                                                    <time datetime="{{ $catArticle->published_at?->toIso8601String() }}">{{ $catArticle->publishedAtDisplay('d M Y', false) }}</time>
                                                 </div>
                                             </div>
                                         </a>

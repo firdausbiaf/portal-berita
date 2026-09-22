@@ -1,37 +1,32 @@
 @extends('layouts.public')
 
-@section('title', $category->name . ' - ' . config('site.name', config('app.name', 'Portal Berita')))
-@section('meta_description', Str::limit($category->description ?: 'Kumpulan berita terkini dan terpercaya seputar kanal ' . $category->name . ' di ' . config('site.name', 'Portal Berita'), 160))
-@section('canonical_url', $articles->currentPage() > 1 ? route('categories.show', ['category' => $category, 'page' => $articles->currentPage()]) : route('categories.show', $category))
+@section('title', 'Berita #' . $tag->name . ' - ' . config('site.name', 'Portal Berita'))
+@section('meta_description', 'Kumpulan berita dan artikel terkini seputar topik #' . $tag->name . ' dari ' . config('site.name', 'Portal Berita') . '.')
+@section('canonical_url', $articles->currentPage() > 1 ? route('tags.show', ['tag' => $tag, 'page' => $articles->currentPage()]) : route('tags.show', $tag))
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-8">
     <!-- Breadcrumb -->
-    <nav class="flex items-center text-xs text-stone-500 gap-2" aria-label="Breadcrumb">
+    <nav class="flex items-center text-xs text-stone-500 gap-2 flex-wrap" aria-label="Breadcrumb">
         <a href="{{ route('home') }}" class="hover:text-red-600 transition-colors">Beranda</a>
         <span>/</span>
-        <span class="text-stone-400">Kategori</span>
+        <span class="text-stone-400">Topik</span>
         <span>/</span>
-        <span class="text-stone-900 font-semibold">{{ $category->name }}</span>
+        <span class="text-stone-900 font-semibold">#{{ $tag->name }}</span>
     </nav>
 
-    <!-- Category Header Banner -->
+    <!-- Tag Header Banner -->
     <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
         <div class="flex items-center gap-2 mb-2">
             <span class="w-2.5 h-6 bg-red-600 rounded-xs"></span>
-            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Kanal Berita</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Arsip Topik Berita</span>
         </div>
         <h1 class="text-2xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
-            {{ $category->name }}
+            #{{ $tag->name }}
         </h1>
-        @if($category->description)
-            <p class="mt-2 text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
-                {{ $category->description }}
-            </p>
-        @endif
-        <div class="mt-4 pt-4 border-t border-stone-100 flex items-center gap-4 text-xs text-stone-500">
-            <span>Menampilkan berita terverifikasi dalam kategori {{ $category->name }}</span>
-        </div>
+        <p class="mt-2 text-xs sm:text-sm text-stone-500">
+            Menampilkan seluruh liputan dan perkembangan berita terkait topik #{{ $tag->name }}.
+        </p>
     </div>
 
     <!-- Article List / Grid -->
@@ -39,12 +34,12 @@
         <div class="bg-white rounded-2xl border border-stone-200 p-12 text-center shadow-xs">
             <div class="w-16 h-16 bg-stone-100 text-stone-400 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                 </svg>
             </div>
-            <h2 class="text-lg font-bold text-stone-900">Belum ada berita pada kategori ini.</h2>
+            <h2 class="text-lg font-bold text-stone-900">Belum ada berita pada topik ini.</h2>
             <p class="mt-2 text-xs sm:text-sm text-stone-500 max-w-md mx-auto">
-                Kanal {{ $category->name }} belum memiliki artikel terpublikasi saat ini. Silakan kunjungi kanal lainnya atau kembali ke beranda.
+                Arsip topik #{{ $tag->name }} belum memiliki artikel terpublikasi saat ini. Silakan temukan berita lainnya melalui beranda atau kanal kategori.
             </p>
             <div class="mt-6">
                 <a href="{{ route('home') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 text-white text-xs font-semibold hover:bg-stone-800 transition-colors">
@@ -67,13 +62,18 @@
                                     </svg>
                                 </div>
                             @endif
+                            <div class="absolute top-2 left-2">
+                                <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-stone-900/80 text-white backdrop-blur-xs">
+                                    {{ $article->category?->name ?? 'Berita' }}
+                                </span>
+                            </div>
                         </div>
 
                         <div class="p-5 flex-1 flex flex-col justify-between">
                             <div>
-                                <h2 class="font-bold text-base sm:text-lg text-stone-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                                <h3 class="font-bold text-base sm:text-lg text-stone-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
                                     {{ $article->title }}
-                                </h2>
+                                </h3>
 
                                 @if($article->excerpt)
                                     <p class="mt-2.5 text-xs sm:text-sm text-stone-600 line-clamp-3 leading-relaxed">
@@ -84,7 +84,9 @@
 
                             <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-400">
                                 <span>{{ $article->author?->name ?? 'Redaksi' }}</span>
-                                <time datetime="{{ $article->published_at?->toIso8601String() }}">{{ $article->publishedAtDisplay('d M Y', false) }}</time>
+                                <time datetime="{{ $article->published_at?->toIso8601String() }}">
+                                    {{ $article->publishedAtDisplay('d M Y', false) }}
+                                </time>
                             </div>
                         </div>
                     </a>

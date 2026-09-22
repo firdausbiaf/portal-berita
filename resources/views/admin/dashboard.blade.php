@@ -11,7 +11,7 @@
             <div>
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 mb-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Portal Berita CMS - Tahap 2 Aktif
+                    Portal Berita CMS Aktif
                 </span>
                 <h2 class="text-2xl font-bold text-stone-950 tracking-tight">
                     Selamat datang kembali, {{ auth()->user()->name }}

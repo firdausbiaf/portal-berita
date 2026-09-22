@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\ArticleStatus;
+use App\Support\ArticleContentSanitizer;
+use Carbon\Carbon;
 use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 #[Fillable([
     'author_id',
@@ -124,5 +127,49 @@ class Article extends Model
     public function isPublished(): bool
     {
         return $this->status === ArticleStatus::PUBLISHED;
+    }
+
+    /**
+     * Get the published_at Carbon instance or formatted string converted to display timezone.
+     */
+    public function publishedAtDisplay(?string $format = null, bool $includeTz = true): Carbon|string|null
+    {
+        if (! $this->published_at) {
+            return null;
+        }
+
+        $dt = $this->published_at->timezone(config('site.display_timezone', 'Asia/Jakarta'));
+
+        if ($format === null) {
+            return $dt;
+        }
+
+        $formatted = $dt->translatedFormat($format);
+
+        if ($includeTz) {
+            $formatted .= ' WIB';
+        }
+
+        return $formatted;
+    }
+
+    /**
+     * Get dynamic SEO meta description derived from excerpt or sanitized plain text content.
+     */
+    public function getMetaDescriptionAttribute(): string
+    {
+        if ($this->excerpt && trim($this->excerpt) !== '') {
+            return Str::limit(trim(preg_replace('/\s+/', ' ', $this->excerpt)), 160);
+        }
+
+        if ($this->content && trim($this->content) !== '') {
+            $plain = strip_tags(ArticleContentSanitizer::sanitize($this->content) ?? '');
+            $clean = trim(preg_replace('/\s+/', ' ', $plain));
+            if ($clean !== '') {
+                return Str::limit($clean, 160);
+            }
+        }
+
+        return config('site.description', 'Berita terbaru dari '.config('site.name', 'Portal Berita'));
     }
 }

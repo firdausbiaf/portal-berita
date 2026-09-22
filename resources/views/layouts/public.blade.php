@@ -5,7 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', config('app.name', 'Portal Berita'))</title>
+    @php
+        $siteName = config('site.name', 'Portal Berita');
+        $siteDesc = config('site.description', 'Portal berita independen, cerdas, dan terpercaya menyajikan kabar terkini, mendalam, dan berimbang dari seluruh nusantara.');
+        $pageTitle = trim($__env->yieldContent('title')) ?: $siteName;
+        $pageDesc = trim($__env->yieldContent('meta_description')) ?: $siteDesc;
+        $pageCanonical = trim($__env->yieldContent('canonical_url')) ?: url()->current();
+        $ogTitle = trim($__env->yieldContent('og_title')) ?: $pageTitle;
+        $ogDesc = trim($__env->yieldContent('og_description')) ?: $pageDesc;
+        $ogUrl = trim($__env->yieldContent('og_url')) ?: $pageCanonical;
+        $twitterTitle = trim($__env->yieldContent('twitter_title')) ?: $ogTitle;
+        $twitterDesc = trim($__env->yieldContent('twitter_description')) ?: $ogDesc;
+    @endphp
+
+    <!-- Title & SEO Metadata -->
+    <title>{!! $pageTitle !!}</title>
+    <meta name="description" content="{!! $pageDesc !!}">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
+    <link rel="canonical" href="{!! $pageCanonical !!}">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:title" content="{!! $ogTitle !!}">
+    <meta property="og:description" content="{!! $ogDesc !!}">
+    <meta property="og:url" content="{!! $ogUrl !!}">
+    @hasSection('og_image')
+        <meta property="og:image" content="@yield('og_image')">
+    @endif
+    @hasSection('article_published_time')
+        <meta property="article:published_time" content="@yield('article_published_time')">
+    @endif
+    @hasSection('article_modified_time')
+        <meta property="article:modified_time" content="@yield('article_modified_time')">
+    @endif
+    @hasSection('article_section')
+        <meta property="article:section" content="@yield('article_section')">
+    @endif
+    @yield('article_tags')
+
+    <!-- Twitter / X Card Metadata -->
+    <meta name="twitter:card" content="@yield('twitter_card', 'summary')">
+    <meta name="twitter:title" content="{!! $twitterTitle !!}">
+    <meta name="twitter:description" content="{!! $twitterDesc !!}">
+    @hasSection('og_image')
+        <meta name="twitter:image" content="@yield('og_image')">
+    @endif
+
+    <!-- JSON-LD Structured Data -->
+    @yield('structured_data')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +71,7 @@
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-600 text-white">
                     LIVE
                 </span>
-                <span class="text-stone-300">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</span>
+                <span class="text-stone-300">{{ \Carbon\Carbon::now(config('site.display_timezone', 'Asia/Jakarta'))->translatedFormat('l, d F Y') }}</span>
             </div>
             <div class="flex items-center gap-4 text-stone-400">
                 <span class="hidden md:inline">Portal Berita Nasional & Terkini</span>
@@ -63,14 +112,17 @@
                     </a>
                 </div>
 
-                <!-- Visual Search Bar Placeholder (Non-active as backend search is for later phase) -->
+                <!-- Desktop Search Form -->
                 <div class="flex items-center gap-3">
-                    <div class="hidden sm:flex items-center relative w-64 md:w-80">
-                        <input type="text" disabled placeholder="Cari berita terkini... (segera hadir)" class="w-full bg-stone-100 border border-stone-200 text-stone-500 text-xs rounded-full pl-9 pr-3 py-2 cursor-not-allowed select-none">
-                        <svg class="w-4 h-4 text-stone-400 absolute left-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
+                    <form action="{{ route('search') }}" method="GET" class="hidden sm:flex items-center relative w-64 md:w-80" role="search">
+                        <label for="header-search-desktop" class="sr-only">Cari Berita</label>
+                        <input type="text" id="header-search-desktop" name="q" value="{{ request('q') }}" placeholder="Cari judul berita..." maxlength="100" class="w-full bg-stone-100 border border-stone-200 text-stone-900 text-xs rounded-full pl-9 pr-4 py-2 focus:outline-hidden focus:ring-2 focus:ring-red-600 focus:bg-white transition-colors">
+                        <button type="submit" aria-label="Kirim pencarian" class="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-red-600 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </form>
 
                     <!-- Editorial badge -->
                     <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs text-stone-700">
@@ -104,7 +156,18 @@
         </nav>
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-stone-200 bg-white px-4 py-3 shadow-lg">
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-stone-200 bg-white px-4 py-4 shadow-lg">
+            <!-- Mobile Search Form -->
+            <form action="{{ route('search') }}" method="GET" class="relative mb-3 sm:hidden" role="search">
+                <label for="header-search-mobile" class="sr-only">Cari Berita</label>
+                <input type="text" id="header-search-mobile" name="q" value="{{ request('q') }}" placeholder="Cari judul berita..." maxlength="100" class="w-full bg-stone-100 border border-stone-200 text-stone-900 text-xs rounded-full pl-9 pr-4 py-2 focus:outline-hidden focus:ring-2 focus:ring-red-600 focus:bg-white transition-colors">
+                <button type="submit" aria-label="Kirim pencarian" class="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-red-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </form>
+
             <div class="flex flex-col space-y-1">
                 <a href="{{ route('home') }}" class="px-3 py-2 text-sm font-bold rounded-md {{ request()->routeIs('home') ? 'bg-red-50 text-red-600 font-bold' : 'text-stone-700 hover:bg-stone-100' }}">
                     Beranda
@@ -170,7 +233,7 @@
                         <li>Gedung Pers Merdeka Lt. 4, Jakarta Pusat</li>
                         <li>Email: redaksi@portalberita.test</li>
                         <li>Arsitektur: Laravel 13 & Tailwind CSS v4</li>
-                        <li>Status: Tahap 3 (Public Layout & Feed)</li>
+                        <li>Status: Sistem Redaksi Terverifikasi</li>
                     </ul>
                 </div>
             </div>

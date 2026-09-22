@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\CategoryController as PublicCategoryController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\RobotsController;
+use App\Http\Controllers\Public\SearchController;
+use App\Http\Controllers\Public\SitemapController;
+use App\Http\Controllers\Public\TagController as PublicTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/cari', [SearchController::class, 'index'])->name('search');
 Route::get('/kategori/{category:slug}', [PublicCategoryController::class, 'show'])->name('categories.show');
+Route::get('/tag/{tag:slug}', [PublicTagController::class, 'show'])->name('tags.show');
 Route::get('/berita/{article:slug}', [PublicArticleController::class, 'show'])->name('articles.show');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots');
 
 /*
 |--------------------------------------------------------------------------

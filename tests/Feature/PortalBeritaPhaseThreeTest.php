@@ -385,7 +385,7 @@ test('invalid category slug returns 404', function () {
 |--------------------------------------------------------------------------
 */
 
-test('published article can be viewed via minimal detail bridge route', function () {
+test('published article can be viewed via article detail route', function () {
     $category = Category::factory()->create(['name' => 'Nasional']);
     $article = Article::factory()->create([
         'author_id' => $this->admin->id,
@@ -393,7 +393,7 @@ test('published article can be viewed via minimal detail bridge route', function
         'title' => 'Pembangunan Infrastruktur Berkelanjutan',
         'slug' => 'pembangunan-infrastruktur-berkelanjutan',
         'excerpt' => 'Ringkasan penting tentang proyek infrastruktur.',
-        'content' => '<p>Konten rahasia lengkap fase 4 yang belum boleh dirender.</p>',
+        'content' => '<p>Konten artikel yang kini dirender penuh pada fase 4.</p>',
         'status' => ArticleStatus::PUBLISHED,
         'published_at' => now(),
     ]);
@@ -404,8 +404,7 @@ test('published article can be viewed via minimal detail bridge route', function
     $response->assertSee('Pembangunan Infrastruktur Berkelanjutan');
     $response->assertSee('Nasional');
     $response->assertSee('Ringkasan penting tentang proyek infrastruktur.');
-    // Must NOT render full raw body content in Phase 3 minimal bridge
-    $response->assertDontSee('Konten rahasia lengkap fase 4 yang belum boleh dirender.');
+    $response->assertSee('Konten artikel yang kini dirender penuh pada fase 4.');
 });
 
 test('draft article returns 404 on article detail route', function () {
