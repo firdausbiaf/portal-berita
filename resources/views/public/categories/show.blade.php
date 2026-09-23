@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', $category->name . ' - ' . config('site.name', config('app.name', 'Portal Berita')))
-@section('meta_description', Str::limit($category->description ?: 'Kumpulan berita terkini dan terpercaya seputar kanal ' . $category->name . ' di ' . config('site.name', 'Portal Berita'), 160))
+@section('title', $category->name . ' - ' . config('site.name', config('app.name', 'JatimNusa')))
+@section('meta_description', Str::limit($category->description ?: 'Kumpulan berita terkini dan terpercaya seputar kanal ' . $category->name . ' di ' . config('site.name', 'JatimNusa'), 160))
 @section('canonical_url', $articles->currentPage() > 1 ? route('categories.show', ['category' => $category, 'page' => $articles->currentPage()]) : route('categories.show', $category))
 
 @section('content')

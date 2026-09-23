@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', '404 - Halaman Tidak Ditemukan - ' . config('site.name', 'Portal Berita'))
+@section('title', '404 - Halaman Tidak Ditemukan - ' . config('site.name', 'JatimNusa'))
 @section('meta_robots', 'noindex, follow')
 
 @section('content')

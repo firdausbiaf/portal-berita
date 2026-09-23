@@ -1,0 +1,39 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1B4B"/>
+      <stop offset="0.6" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#18181B"/>
+    </linearGradient>
+    <radialGradient id="ballLight" cx="600" cy="320" r="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DC2626" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#DC2626" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg3)"/>
+  <!-- Light burst -->
+  <circle cx="600" cy="320" r="250" fill="url(#ballLight)"/>
+  <!-- Dynamic Pitch Lines in Perspective -->
+  <g stroke="#E2E8F0" stroke-opacity="0.25" stroke-width="3">
+    <ellipse cx="600" cy="460" rx="380" ry="120" fill="none"/>
+    <line x1="600" y1="340" x2="600" y2="580"/>
+    <path d="M 220 540 L 980 540" />
+    <path d="M 350 420 L 850 420" />
+  </g>
+  <!-- Dynamic Speed Swoosh -->
+  <path d="M 250 450 Q 500 200, 750 280" stroke="#DC2626" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M 290 480 Q 520 250, 770 300" stroke="#EF4444" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 8" fill="none"/>
+  <!-- Stylized Geometric Soccer Ball -->
+  <g transform="translate(680, 240)">
+    <circle cx="60" cy="60" r="54" fill="#F8FAFC" stroke="#0F172A" stroke-width="4"/>
+    <polygon points="60,25 78,38 71,59 49,59 42,38" fill="#DC2626"/>
+    <polygon points="60,25 42,38 22,35 15,18 35,10" fill="#0F172A"/>
+    <polygon points="78,38 98,35 105,18 85,10 60,25" fill="#0F172A"/>
+    <polygon points="71,59 86,75 80,95 60,90 49,59" fill="#0F172A"/>
+  </g>
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="120" height="32" rx="16" fill="#DC2626"/>
+    <text x="60" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">OLAHRAGA</text>
+  </g>
+</svg>

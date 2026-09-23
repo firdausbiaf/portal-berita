@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', config('site.name', 'Portal Berita') . ' - Jurnalisme Cerdas, Kritis & Terpercaya')
+@section('title', config('site.name', 'JatimNusa') . ' - ' . config('site.tagline', 'Dari Jatim untuk Nusa'))
 @section('meta_description', config('site.description'))
 @section('canonical_url', route('home'))
 
@@ -148,18 +148,6 @@
                         </div>
                     </div>
                 @endif
-
-                <!-- Portal Info Widget -->
-                <div class="bg-stone-900 text-stone-300 rounded-xl p-5 shadow-xs">
-                    <div class="flex items-center gap-2 text-xs text-red-400 font-bold uppercase tracking-wider mb-2">
-                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                        Fokus Pemberitaan
-                    </div>
-                    <h3 class="font-bold text-base text-white">Standar Jurnalistik Akurat</h3>
-                    <p class="mt-2 text-xs text-stone-400 leading-relaxed">
-                        Setiap artikel melalui proses penyuntingan dan verifikasi fakta sebelum dipublikasikan untuk menjaga integritas ruang informasi publik.
-                    </p>
-                </div>
             </aside>
         </section>
 

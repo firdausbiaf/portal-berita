@@ -1,0 +1,44 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg12" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B0764"/>
+      <stop offset="0.6" stop-color="#18181B"/>
+      <stop offset="1" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="barGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#EC4899"/>
+      <stop offset="0.5" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg12)"/>
+  <!-- Equalizer Spectrum Waves -->
+  <g transform="translate(300, 220)">
+    <rect x="0" y="90" width="22" height="150" rx="6" fill="url(#barGlow)"/>
+    <rect x="35" y="40" width="22" height="200" rx="6" fill="url(#barGlow)"/>
+    <rect x="70" y="110" width="22" height="130" rx="6" fill="url(#barGlow)"/>
+    <rect x="105" y="20" width="22" height="220" rx="6" fill="url(#barGlow)"/>
+    <rect x="140" y="70" width="22" height="170" rx="6" fill="url(#barGlow)"/>
+    <rect x="175" y="0" width="22" height="240" rx="6" fill="url(#barGlow)"/>
+    <rect x="210" y="50" width="22" height="190" rx="6" fill="url(#barGlow)"/>
+    <rect x="245" y="80" width="22" height="160" rx="6" fill="url(#barGlow)"/>
+    <rect x="280" y="30" width="22" height="210" rx="6" fill="url(#barGlow)"/>
+    <rect x="315" y="90" width="22" height="150" rx="6" fill="url(#barGlow)"/>
+    <rect x="350" y="10" width="22" height="230" rx="6" fill="url(#barGlow)"/>
+    <rect x="385" y="60" width="22" height="180" rx="6" fill="url(#barGlow)"/>
+    <rect x="420" y="100" width="22" height="140" rx="6" fill="url(#barGlow)"/>
+    <rect x="455" y="40" width="22" height="200" rx="6" fill="url(#barGlow)"/>
+    <rect x="490" y="80" width="22" height="160" rx="6" fill="url(#barGlow)"/>
+    <rect x="525" y="120" width="22" height="120" rx="6" fill="url(#barGlow)"/>
+    <rect x="560" y="70" width="22" height="170" rx="6" fill="url(#barGlow)"/>
+  </g>
+  <!-- Ambient Audio Rings -->
+  <circle cx="600" cy="340" r="220" stroke="#EC4899" stroke-width="1.5" opacity="0.25" stroke-dasharray="4 6"/>
+  <circle cx="600" cy="340" r="270" stroke="#A855F7" stroke-width="1.5" opacity="0.15" stroke-dasharray="6 8"/>
+
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="110" height="32" rx="16" fill="#9333EA"/>
+    <text x="55" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">HIBURAN</text>
+  </g>
+</svg>

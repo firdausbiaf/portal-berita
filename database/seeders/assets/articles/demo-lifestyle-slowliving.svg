@@ -1,0 +1,37 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDFBF7"/>
+      <stop offset="0.5" stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#E7DEC8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg6)"/>
+  <!-- Minimalist Geometric Earth Shapes -->
+  <circle cx="420" cy="380" r="160" fill="#D97706" opacity="0.25"/>
+  <circle cx="780" cy="310" r="190" fill="#059669" opacity="0.2"/>
+  <path d="M260 520 C 400 420, 520 480, 680 430 C 840 380, 960 480, 1040 540 L 1040 675 L 260 675 Z" fill="#78350F" opacity="0.15"/>
+
+  <!-- Artisan Ceramic Coffee Cup Outline -->
+  <g transform="translate(540, 240)">
+    <!-- Steam Lines -->
+    <path d="M 50 15 Q 40 40, 50 65" stroke="#D97706" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M 70 10 Q 80 35, 70 60" stroke="#D97706" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <!-- Cup Body -->
+    <path d="M 15 70 C 15 140, 105 140, 105 70 Z" fill="#FFFFFF" stroke="#451A03" stroke-width="4"/>
+    <!-- Handle -->
+    <path d="M 105 85 C 130 85, 130 115, 105 115" stroke="#451A03" stroke-width="4" fill="none"/>
+    <!-- Saucer -->
+    <ellipse cx="60" cy="148" rx="65" ry="10" fill="#E2E8F0" stroke="#451A03" stroke-width="3"/>
+  </g>
+
+  <!-- Botanical Leaf Minimalist Art -->
+  <path d="M 380 280 Q 420 180, 480 230 Q 450 310, 380 280 Z" fill="#059669" opacity="0.6"/>
+  <line x1="380" y1="280" x2="480" y2="230" stroke="#064E3B" stroke-width="2"/>
+
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="115" height="32" rx="16" fill="#D97706"/>
+    <text x="57" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">LIFESTYLE</text>
+  </g>
+</svg>

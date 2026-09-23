@@ -1,0 +1,46 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="pillarGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#94A3B8"/>
+      <stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg4)"/>
+  <!-- Geometric City & Civic Pillars -->
+  <g opacity="0.15" fill="#64748B">
+    <rect x="180" y="260" width="80" height="300"/>
+    <rect x="280" y="200" width="110" height="360"/>
+    <rect x="410" y="240" width="90" height="320"/>
+    <rect x="700" y="220" width="100" height="340"/>
+    <rect x="820" y="180" width="110" height="380"/>
+    <rect x="950" y="270" width="80" height="290"/>
+  </g>
+  <!-- Grand Civic Gateway -->
+  <!-- Pediment / Triangular roof -->
+  <polygon points="600,160 380,260 820,260" fill="#E2E8F0"/>
+  <rect x="390" y="260" width="420" height="24" fill="#CBD5E1"/>
+  <!-- Columns -->
+  <rect x="420" y="284" width="36" height="220" fill="url(#pillarGrad)"/>
+  <rect x="490" y="284" width="36" height="220" fill="url(#pillarGrad)"/>
+  <rect x="560" y="284" width="36" height="220" fill="url(#pillarGrad)"/>
+  <rect x="630" y="284" width="36" height="220" fill="url(#pillarGrad)"/>
+  <rect x="700" y="284" width="36" height="220" fill="url(#pillarGrad)"/>
+  <!-- Podium Stairs -->
+  <rect x="360" y="504" width="480" height="16" fill="#94A3B8"/>
+  <rect x="330" y="520" width="540" height="16" fill="#64748B"/>
+  <rect x="300" y="536" width="600" height="20" fill="#475569"/>
+
+  <!-- Digital Gateway Signal Ring -->
+  <circle cx="600" cy="380" r="60" stroke="#DC2626" stroke-width="4" stroke-dasharray="6 4" opacity="0.8"/>
+  <circle cx="600" cy="380" r="14" fill="#DC2626"/>
+
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="115" height="32" rx="16" fill="#DC2626"/>
+    <text x="57" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">NASIONAL</text>
+  </g>
+</svg>

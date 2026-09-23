@@ -10,12 +10,14 @@ return [
     | default meta descriptions, and OpenGraph/Twitter card tags.
     |
     */
-    'name' => env('SITE_NAME', env('APP_NAME', 'Portal Berita')),
+    'name' => env('SITE_NAME', env('APP_NAME', 'JatimNusa')),
 
     'description' => env(
         'SITE_DESCRIPTION',
         'Portal berita independen, cerdas, dan terpercaya menyajikan kabar terkini, mendalam, dan berimbang dari seluruh nusantara.'
     ),
+
+    'tagline' => env('SITE_TAGLINE', 'Dari Jatim untuk Nusa'),
 
     /*
     |--------------------------------------------------------------------------

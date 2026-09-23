@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
+use Database\Seeders\DemoArticleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -246,4 +248,94 @@ test('admin category creation validates menu_order must be positive integer', fu
     ]);
 
     $response->assertSessionHasErrors('menu_order');
+});
+
+/*
+|--------------------------------------------------------------------------
+| JatimNusa Branding & Asset Verification Tests
+|--------------------------------------------------------------------------
+*/
+
+test('public layout renders JatimNusa logo and favicon assets', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertSee('images/branding/logo.png');
+    $response->assertSee('images/branding/favicon.png');
+    $response->assertSee('favicon.ico');
+    $response->assertSee('alt="JatimNusa"', false);
+});
+
+test('public header and footer no longer contain old PORTALBERITA placeholder', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertDontSee('PORTAL<span class="text-red-600">BERITA</span>', false);
+    $response->assertDontSee('PORTAL<span class="text-red-500">BERITA</span>', false);
+    $response->assertSee('Jatim<span class="text-red-500 transition-colors group-hover:text-red-400">Nusa</span>', false);
+});
+
+test('page title and site config use JatimNusa as brand name with new tagline', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertSee('<title>JatimNusa - Dari Jatim untuk Nusa</title>', false);
+    expect(config('site.name'))->toBe('JatimNusa');
+    expect(config('site.tagline'))->toBe('Dari Jatim untuk Nusa');
+});
+
+test('branding asset files exist in public directory', function () {
+    expect(file_exists(public_path('images/branding/logo.png')))->toBeTrue();
+    expect(file_exists(public_path('images/branding/logo-mark.png')))->toBeTrue();
+    expect(file_exists(public_path('images/branding/favicon.png')))->toBeTrue();
+    expect(file_exists(public_path('favicon.ico')))->toBeTrue();
+});
+
+test('header logo uses enlarged responsive height classes', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertSee('h-11 sm:h-12 md:h-13 lg:h-15 xl:h-16', false);
+    $response->assertSee('w-auto object-contain', false);
+});
+
+test('homepage does not contain Fokus Pemberitaan or Standar Jurnalistik card', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertDontSee('Fokus Pemberitaan');
+    $response->assertDontSee('Standar Jurnalistik Akurat');
+});
+
+test('footer brand acts as single interactive unit with unified hover and homepage link', function () {
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    // Verify both wordmark parts change to red-400 on group hover
+    $response->assertSee('group-hover:text-red-400', false);
+    $response->assertSee('<span class="text-red-500 transition-colors group-hover:text-red-400">Nusa</span>', false);
+    $response->assertSee('images/branding/logo-mark.png');
+});
+
+test('DemoArticleSeeder seeds published articles with local featured images and is idempotent', function () {
+    $this->seed(DemoArticleSeeder::class);
+
+    $demoCount = Article::whereNotNull('featured_image')->count();
+    expect($demoCount)->toBeGreaterThanOrEqual(8);
+
+    // Verify local SVG asset was copied to public storage
+    $firstDemo = Article::whereNotNull('featured_image')->first();
+    expect($firstDemo)->not->toBeNull();
+    expect(file_exists(storage_path('app/public/'.$firstDemo->featured_image)))->toBeTrue();
+
+    // Verify idempotency: running again should not duplicate
+    $this->seed(DemoArticleSeeder::class);
+    $secondCount = Article::whereNotNull('featured_image')->count();
+    expect($secondCount)->toBe($demoCount);
+
+    // Verify demo article renders on homepage and detail page
+    $response = $this->get(route('articles.show', $firstDemo));
+    $response->assertOk();
+    $response->assertSee($firstDemo->title);
+    $response->assertSee($firstDemo->featured_image);
 });

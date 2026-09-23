@@ -1,0 +1,68 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.5" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="200" y1="100" x2="1000" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DC2626"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="gridGlow" x1="0" y1="0" x2="0" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg1)"/>
+  <!-- Perspective Server Grid -->
+  <g opacity="0.3" stroke="#38BDF8" stroke-width="1">
+    <line x1="100" y1="675" x2="500" y2="350"/>
+    <line x1="250" y1="675" x2="540" y2="350"/>
+    <line x1="450" y1="675" x2="580" y2="350"/>
+    <line x1="750" y1="675" x2="620" y2="350"/>
+    <line x1="950" y1="675" x2="660" y2="350"/>
+    <line x1="1100" y1="675" x2="700" y2="350"/>
+    <line x1="300" y1="450" x2="900" y2="450"/>
+    <line x1="200" y1="530" x2="1000" y2="530"/>
+    <line x1="100" y1="620" x2="1100" y2="620"/>
+  </g>
+  <!-- Server Towers -->
+  <rect x="240" y="160" width="160" height="340" rx="8" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  <rect x="260" y="190" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="280" cy="200" r="4" fill="#22C55E"/>
+  <circle cx="300" cy="200" r="4" fill="#3B82F6"/>
+  <rect x="260" y="225" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="280" cy="235" r="4" fill="#DC2626"/>
+  <circle cx="300" cy="235" r="4" fill="#EAB308"/>
+  <rect x="260" y="260" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="280" cy="270" r="4" fill="#22C55E"/>
+  <rect x="260" y="295" width="120" height="180" rx="4" fill="#0B132B" stroke="#1E293B"/>
+
+  <!-- Center AI Core Node -->
+  <circle cx="600" cy="300" r="90" fill="url(#accent1)" opacity="0.15"/>
+  <circle cx="600" cy="300" r="70" stroke="#DC2626" stroke-width="3" stroke-dasharray="8 6"/>
+  <circle cx="600" cy="300" r="45" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+  <path d="M585 290L600 275L615 290L600 305Z" fill="#38BDF8"/>
+  <path d="M600 305L615 320L600 335L585 320Z" fill="#DC2626"/>
+
+  <!-- Right Server Tower -->
+  <rect x="800" y="160" width="160" height="340" rx="8" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  <rect x="820" y="190" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="840" cy="200" r="4" fill="#38BDF8"/>
+  <rect x="820" y="225" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="840" cy="235" r="4" fill="#22C55E"/>
+  <rect x="820" y="260" width="120" height="20" rx="4" fill="#0F172A" stroke="#475569"/>
+  <circle cx="840" cy="270" r="4" fill="#DC2626"/>
+  <rect x="820" y="295" width="120" height="180" rx="4" fill="#0B132B" stroke="#1E293B"/>
+
+  <!-- Connecting Data Lines -->
+  <path d="M400 250 C 480 250, 520 290, 555 300" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M645 300 C 680 290, 720 250, 800 250" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- Editorial Category Tag Overlay -->
+  <g transform="translate(60, 60)">
+    <rect width="130" height="32" rx="16" fill="#DC2626"/>
+    <text x="65" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">TEKNOLOGI</text>
+  </g>
+</svg>

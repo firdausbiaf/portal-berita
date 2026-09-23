@@ -1,0 +1,37 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg11" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#451A03"/>
+      <stop offset="0.6" stop-color="#292524"/>
+      <stop offset="1" stop-color="#1C1917"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg11)"/>
+  <!-- Top View Artisan Dish Composition -->
+  <circle cx="600" cy="337" r="190" fill="#292524" stroke="#78350F" stroke-width="6"/>
+  <circle cx="600" cy="337" r="150" fill="#44403C" stroke="#A8A29E" stroke-width="2"/>
+  <!-- Colorful Garnish & Spices Abstract -->
+  <ellipse cx="600" cy="337" rx="80" ry="70" fill="#B45309"/>
+  <circle cx="560" cy="310" r="24" fill="#DC2626"/>
+  <circle cx="630" cy="315" r="18" fill="#16A34A"/>
+  <circle cx="605" cy="365" r="22" fill="#EAB308"/>
+  <circle cx="650" cy="355" r="14" fill="#DC2626"/>
+
+  <!-- Fork & Spoon Minimalist Lines -->
+  <g transform="translate(340, 240)">
+    <line x1="0" y1="0" x2="0" y2="200" stroke="#A8A29E" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="0" cy="20" rx="14" ry="24" fill="#A8A29E"/>
+  </g>
+  <g transform="translate(860, 240)">
+    <line x1="0" y1="0" x2="0" y2="200" stroke="#A8A29E" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-12" y1="0" x2="-12" y2="35" stroke="#A8A29E" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#A8A29E" stroke-width="3" stroke-linecap="round"/>
+    <line x1="12" y1="0" x2="12" y2="35" stroke="#A8A29E" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="115" height="32" rx="16" fill="#D97706"/>
+    <text x="57" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">LIFESTYLE</text>
+  </g>
+</svg>

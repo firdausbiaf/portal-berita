@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @php
-        $siteName = config('site.name', 'Portal Berita');
+        $siteName = config('site.name', 'JatimNusa');
         $siteDesc = config('site.description', 'Portal berita independen, cerdas, dan terpercaya menyajikan kabar terkini, mendalam, dan berimbang dari seluruh nusantara.');
         $pageTitle = trim($__env->yieldContent('title')) ?: $siteName;
         $pageDesc = trim($__env->yieldContent('meta_description')) ?: $siteDesc;
@@ -56,6 +56,11 @@
     <!-- JSON-LD Structured Data -->
     @yield('structured_data')
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/png" href="{{ asset('images/branding/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/branding/logo-mark.png') }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
@@ -65,13 +70,13 @@
 </head>
 <body class="bg-stone-50 text-stone-900 antialiased min-h-screen flex flex-col font-sans selection:bg-red-500 selection:text-white">
     <!-- Top Utility Bar -->
-    <div class="bg-stone-900 text-stone-300 text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-stone-800">
+    <div class="bg-stone-900 text-stone-300 text-xs py-1.5 px-4 sm:px-6 lg:px-8 border-b border-stone-800">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center gap-2">
                 <span class="text-stone-300">{{ \Carbon\Carbon::now(config('site.display_timezone', 'Asia/Jakarta'))->translatedFormat('l, d F Y') }}</span>
             </div>
             <div class="flex items-center gap-4 text-stone-400">
-                <span class="hidden md:inline">Portal Berita Nasional & Terkini</span>
+                <span class="hidden md:inline">JatimNusa - Dari Jatim untuk Nusa</span>
                 <span class="hidden md:inline text-stone-700">|</span>
                 <a href="{{ route('admin.login') }}" class="hover:text-white transition-colors inline-flex items-center gap-1.5 font-medium">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +90,7 @@
 
     <!-- Main Header -->
     <header class="bg-white border-b border-stone-200 sticky top-0 z-40 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-1.5">
             <div class="flex items-center justify-between gap-4">
                 <!-- Brand / Logo -->
                 <div class="flex items-center gap-3">
@@ -99,13 +104,12 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('home') }}" class="inline-block group">
-                        <div class="flex items-baseline gap-1">
-                            <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-stone-950 group-hover:text-red-600 transition-colors">
-                                PORTAL<span class="text-red-600">BERITA</span>
-                            </span>
-                        </div>
-                        <p class="text-[11px] text-stone-500 font-medium tracking-wider uppercase hidden sm:block">Aktual, Berimbang & Independen</p>
+                    <a href="{{ route('home') }}" class="inline-flex items-center group" aria-label="JatimNusa">
+                        <img
+                            src="{{ asset('images/branding/logo.png') }}"
+                            alt="JatimNusa"
+                            class="h-11 sm:h-12 md:h-13 lg:h-15 xl:h-16 w-auto object-contain -my-1 sm:-my-1.5 transition-transform group-hover:scale-[1.02]"
+                        />
                     </a>
                 </div>
 
@@ -127,8 +131,8 @@
         <!-- Desktop Navigation Bar -->
         <nav class="border-t border-stone-100 bg-white hidden lg:block relative z-30" aria-label="Navigasi Utama">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center gap-1 py-1">
-                    <a href="{{ route('home') }}" class="px-3.5 py-2 text-sm font-bold border-b-2 transition-colors whitespace-nowrap {{ request()->routeIs('home') ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}">
+                <div class="flex items-center gap-1 py-0.5">
+                    <a href="{{ route('home') }}" class="px-3.5 py-1.5 text-sm font-bold border-b-2 transition-colors whitespace-nowrap {{ request()->routeIs('home') ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}">
                         Beranda
                     </a>
 
@@ -137,7 +141,7 @@
                             @php
                                 $isActive = request()->routeIs('categories.show') && isset($category) && $category->id === $navCat->id;
                             @endphp
-                            <a href="{{ route('categories.show', $navCat) }}" class="px-3.5 py-2 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap {{ $isActive ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}">
+                            <a href="{{ route('categories.show', $navCat) }}" class="px-3.5 py-1.5 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap {{ $isActive ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}">
                                 {{ $navCat->name }}
                             </a>
                         @endforeach
@@ -153,7 +157,7 @@
                                 id="nav-more-dropdown-btn"
                                 aria-expanded="false"
                                 aria-haspopup="true"
-                                class="px-3.5 py-2 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap inline-flex items-center gap-1 cursor-pointer {{ $isDropdownActive ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}"
+                                class="px-3.5 py-1.5 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap inline-flex items-center gap-1 cursor-pointer {{ $isDropdownActive ? 'border-red-600 text-red-600' : 'border-transparent text-stone-700 hover:text-red-600 hover:border-stone-300' }}"
                             >
                                 <span>Lainnya</span>
                                 <svg class="w-3.5 h-3.5 transition-transform" id="nav-more-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +236,12 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
                 <!-- Column 1: Brand & About -->
                 <div class="md:col-span-4">
-                    <h3 class="font-extrabold text-xl text-white tracking-tight">PORTAL<span class="text-red-500">BERITA</span></h3>
+                    <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5 group transition-all" aria-label="JatimNusa">
+                        <img src="{{ asset('images/branding/logo-mark.png') }}" alt="" class="h-7 w-7 object-contain transition-transform group-hover:scale-105" />
+                        <span class="font-extrabold text-2xl tracking-tight transition-colors text-white group-hover:text-red-400">
+                            Jatim<span class="text-red-500 transition-colors group-hover:text-red-400">Nusa</span>
+                        </span>
+                    </a>
                     <p class="mt-3 text-sm text-stone-400 leading-relaxed max-w-md">
                         Menyajikan kabar terpercaya, analisis mendalam, dan informasi terkini dari seluruh pelosok nusantara dengan standar jurnalistik yang berintegritas dan independen.
                     </p>

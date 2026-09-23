@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', ($query ? 'Hasil Pencarian "' . $query . '"' : 'Pencarian Berita') . ' - ' . config('site.name', 'Portal Berita'))
-@section('meta_description', 'Pencarian berita terkini dan terpercaya di ' . config('site.name', 'Portal Berita') . '.')
+@section('title', ($query ? 'Hasil Pencarian "' . $query . '"' : 'Pencarian Berita') . ' - ' . config('site.name', 'JatimNusa'))
+@section('meta_description', 'Pencarian berita terkini dan terpercaya di ' . config('site.name', 'JatimNusa') . '.')
 @section('meta_robots', 'noindex, follow')
 @php
     $searchCanonicalParams = [];

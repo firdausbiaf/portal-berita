@@ -15,8 +15,8 @@ test('1. public homepage can be accessed', function () {
     $response = $this->get(route('home'));
 
     $response->assertOk();
-    $response->assertSee('PORTAL');
-    $response->assertSee('BERITA');
+    $response->assertSee('JatimNusa');
+    $response->assertSee('berita');
 });
 
 test('2. admin login page can be accessed by guest', function () {

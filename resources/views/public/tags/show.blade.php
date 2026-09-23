@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', 'Berita #' . $tag->name . ' - ' . config('site.name', 'Portal Berita'))
-@section('meta_description', 'Kumpulan berita dan artikel terkini seputar topik #' . $tag->name . ' dari ' . config('site.name', 'Portal Berita') . '.')
+@section('title', 'Berita #' . $tag->name . ' - ' . config('site.name', 'JatimNusa'))
+@section('meta_description', 'Kumpulan berita dan artikel terkini seputar topik #' . $tag->name . ' dari ' . config('site.name', 'JatimNusa') . '.')
 @section('canonical_url', $articles->currentPage() > 1 ? route('tags.show', ['tag' => $tag, 'page' => $articles->currentPage()]) : route('tags.show', $tag))
 
 @section('content')

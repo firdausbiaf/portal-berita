@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Dashboard') - Portal Berita Admin</title>
+    <title>@yield('title', 'Dashboard') - JatimNusa Admin</title>
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/png" href="{{ asset('images/branding/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/branding/logo-mark.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,12 +26,10 @@
             <div>
                 <!-- Brand / Logo -->
                 <div class="h-16 px-6 flex items-center justify-between border-b border-stone-800">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white font-bold text-base shadow-xs">
-                            P
-                        </span>
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5">
+                        <img src="{{ asset('images/branding/logo-mark.png') }}" alt="JatimNusa" class="w-8 h-8 object-contain">
                         <div>
-                            <span class="font-bold text-white tracking-tight text-base block leading-none">Portal Berita</span>
+                            <span class="font-bold text-white tracking-tight text-base block leading-none">JatimNusa</span>
                             <span class="text-[10px] text-stone-400 font-semibold tracking-wider uppercase mt-1 block">Panel Admin</span>
                         </div>
                     </a>

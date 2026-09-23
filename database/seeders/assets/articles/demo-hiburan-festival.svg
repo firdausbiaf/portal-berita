@@ -1,0 +1,46 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1035"/>
+      <stop offset="0.5" stop-color="#2E1065"/>
+      <stop offset="1" stop-color="#0F051D"/>
+    </linearGradient>
+    <linearGradient id="spotlight1" x1="150" y1="0" x2="450" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A855F7" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="spotlight2" x1="1050" y1="0" x2="750" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg5)"/>
+  <!-- Spotlights -->
+  <polygon points="150,0 200,0 550,675 350,675" fill="url(#spotlight1)"/>
+  <polygon points="1050,0 1000,0 650,675 850,675" fill="url(#spotlight2)"/>
+
+  <!-- Cinema Film Clapperboard Motif -->
+  <g transform="translate(480, 220)">
+    <!-- Base Board -->
+    <rect x="0" y="70" width="240" height="170" rx="8" fill="#18181B" stroke="#A855F7" stroke-width="3"/>
+    <line x1="20" y1="120" x2="220" y2="120" stroke="#3F3F46" stroke-width="2"/>
+    <line x1="20" y1="170" x2="220" y2="170" stroke="#3F3F46" stroke-width="2"/>
+    <!-- Top Flap -->
+    <g transform="rotate(-12, 10, 70)">
+      <rect x="0" y="30" width="240" height="38" rx="4" fill="#27272A" stroke="#FFFFFF" stroke-width="2"/>
+      <polygon points="40,32 65,32 45,66 20,66" fill="#DC2626"/>
+      <polygon points="90,32 115,32 95,66 70,66" fill="#F8FAFC"/>
+      <polygon points="140,32 165,32 145,66 120,66" fill="#DC2626"/>
+      <polygon points="190,32 215,32 195,66 170,66" fill="#F8FAFC"/>
+    </g>
+    <!-- Laurel Wreath Trophy Spark -->
+    <circle cx="120" cy="150" r="28" fill="#DC2626" opacity="0.9"/>
+    <path d="M120 135 L124 146 L135 146 L127 153 L130 164 L120 157 L110 164 L113 153 L105 146 L116 146 Z" fill="#FDE047"/>
+  </g>
+
+  <!-- Category Tag -->
+  <g transform="translate(60, 60)">
+    <rect width="110" height="32" rx="16" fill="#9333EA"/>
+    <text x="55" y="20" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">HIBURAN</text>
+  </g>
+</svg>
